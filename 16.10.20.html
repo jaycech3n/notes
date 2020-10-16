@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="dcterms.date" content="2020-10-16">
   <title>Encoding CwFs in Homotopy Type Theory</title>
   <style>
     code{white-space: pre-wrap;}
@@ -13,9 +14,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
   </style>
-  <link rel="stylesheet" href="main.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Code+Pro&family=PT+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Code+Pro&family=PT+Mono&display=swap">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
    var mathElements = document.getElementsByClassName("math");
@@ -32,23 +33,23 @@
   }}});
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
+<a id="back" href="index.html">&laquo;</a>
 <h1 class="title">Encoding CwFs in Homotopy Type Theory</h1>
+<p class="date">16 Oct 2020</p>
 </header>
-<h3 id="oct-2020">15 Oct 2020</h3>
-<p>Consider the problem of defining models of type theory <em>inside</em> HoTT. A bit of work has been done on this:</p>
+<section id="content">
+<p>Consider the problem of defining models of type theory inside HoTT. In particular, we want an internal definition of a <em>category with families</em> (CwF). A bit of work has been done on this:</p>
 <ul>
-<li><em><a href="https://arxiv.org/abs/1907.0756">Shallow embedding of type theory is morally correct [KKK18]</a></em></li>
-<li><em><a href="https://arxiv.org/abs/2009.01883">Internal ∞-Categorical Models of Dependent Type Theory: Towards 2LTT Eating HoTT [Kr20]</a></em></li>
+<li><a href="https://arxiv.org/abs/1907.0756"><em>Shallow embedding of type theory is morally correct</em> [KKK18]</a></li>
+<li><a href="https://arxiv.org/abs/2009.01883"><em>Internal ∞-Categorical Models of Dependent Type Theory: Towards 2LTT Eating HoTT</em> [Kr20]</a></li>
 </ul>
 <p>It seems natural to consider two particular varieties of CwF internal to type theory: the set-truncated and “<span class="math inline">\infty</span>-” (i.e. with all higher coherences) versions. For the references listed above, the first is formulated in an extensional metatheory and is automatically truncated, while the second is <span class="math inline">\infty</span>-.</p>
 <p>For this note we’ll focus on the set-truncated version.</p>
-<h2 id="cwfs-in-hott">(1-)CwFs in HoTT</h2>
+<h1 id="cwfs-in-hott">(1-)CwFs in HoTT</h1>
 <p>(Work in progress)</p>
+</section>
 </body>
 </html>
