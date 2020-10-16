@@ -6,7 +6,7 @@ header {display: none}
 
 #content h1:first-child {
     display: inline-block;
-    color: #5d4d7a;
+    color: #6754bb;
     text-shadow: 1px 1px #b2b2b2;
     line-height: 1em;
     font-size: 2.2em;
@@ -20,12 +20,12 @@ header {display: none}
     font-size: 1.2em;
     list-style-type: none;
     display: flex;
-    flex-direction: column;
-    line-height: 2em
+    flex-direction: column
 
 }
 #content ul li {
     display: inline-block;
+    margin: 0.4em 0 0.2em 0;
     max-width: 80%
 }
 
