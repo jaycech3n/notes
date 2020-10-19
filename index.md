@@ -10,4 +10,4 @@ css:
 
 # Notes sobre ∞-categories
 
-- [Encoding CwFs in Homotopy Type Theory](16.10.20.html) ∙ 16 oct 20
+- [Encoding CwFs in Homotopy Type Theory](16.10.20.html) ∙ 19 oct 20

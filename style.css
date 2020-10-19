@@ -2,6 +2,7 @@ body {
     margin: 0 25% 0 25%;
     background-color: #292b2e;
     background-image: url(tile.svg);
+    background-repeat: repeat;
     color: #b2b2b2;
     font-family: "Noto Sans", sans-serif;
     font-size: 18px;
@@ -62,11 +63,12 @@ header .date {
     font-size: 1.6em
 }
 #content h2 {
-    color: #4f97d7;
-    font-size: 1.4em
+    color: #2d9574;
+    font-size: 1.4em;
+    margin-left: 0.6em
 }
 #content h3 {
-    color: #2d9574;
+    color: #4f97d7;
     font-size: 1.2em
 }
 
@@ -81,6 +83,7 @@ header .date {
 @media screen and (max-width: 960px) {
     body {margin: 0 1em 0 1em}
     header .title {margin-top: 2em}
+    #content h2 {margin-left: 0}
     #content ul, #content ol, #content p {
 	margin-left: 0.5em;
 	margin-right: 0.5em
