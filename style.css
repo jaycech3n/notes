@@ -1,5 +1,6 @@
 body {
     margin: 0 25% 0 25%;
+    padding-bottom: 1.5em;
     background-color: #292b2e;
     background-image: url(tile.svg);
     background-repeat: repeat;
