@@ -9,15 +9,14 @@ header {display: none}
     color: #6754bb;
     text-shadow: 1px 1px #b2b2b2;
     line-height: 1em;
-    font-size: 2.2em;
-    font-family: "PT Mono", monospace;
+    font-size: 2em;
     font-weight: 600
 }
 
 #content ul {
     margin: 0;
     padding: 0 10% 0 10%;
-    font-size: 1.2em;
+    font-size: 1.25em;
     list-style-type: none;
     display: flex;
     flex-direction: column

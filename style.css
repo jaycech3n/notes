@@ -1,17 +1,51 @@
+@font-face {
+  font-family: 'Atkinson-Hyperlegible';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Atkinson-Hyperlegible-Regular'),
+       url(assets/fonts/Atkinson-Hyperlegible-Regular.woff2) format('woff2'),
+       url(assets/fonts/Atkinson-Hyperlegible-Regular.woff) format('woff')
+}
+@font-face {
+  font-family: 'Atkinson-Hyperlegible';
+  font-style: italic;
+  font-weight: normal;
+  src: local('Atkinson-Hyperlegible-Italic'),
+       url(assets/fonts/Atkinson-Hyperlegible-Italic.woff2) format('woff2'),
+       url(assets/fonts/Atkinson-Hyperlegible-Italic.woff) format('woff')
+}
+@font-face {
+  font-family: 'Atkinson-Hyperlegible';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Atkinson-Hyperlegible-Bold'),
+       url(assets/fonts/Atkinson-Hyperlegible-Bold.woff2) format('woff2'),
+       url(assets/fonts/Atkinson-Hyperlegible-Bold.woff) format('woff')
+}
+@font-face {
+  font-family: 'Atkinson-Hyperlegible';
+  font-style: italic;
+  font-weight: bold;
+  src: local('Atkinson-Hyperlegible-BoldItalic'),
+       url(assets/fonts/Atkinson-Hyperlegible-BoldItalic.woff2) format('woff2'),
+       url(assets/fonts/Atkinson-Hyperlegible-BoldItalic.woff) format('woff')
+}
+
 body {
     margin: 0 25% 0 25%;
-    padding-bottom: 1.5em;
+    padding-bottom: 2em;
     background-color: #292b2e;
-    background-image: url(tile.svg);
+    background-image: url(assets/tile.svg);
     background-repeat: repeat;
     color: #b2b2b2;
-    font-family: "Noto Sans", sans-serif;
-    font-size: 18px;
+    font-family: "Atkinson-Hyperlegible", sans-serif;
+    font-size: 20px;
     line-height: 1.6em
 }
 
 ::selection, ::-moz-selection {
-    background-color: #121212
+    background-color: #49d1a6;
+    color: #222
 }
 
 a {
@@ -22,6 +56,9 @@ a {
 a:hover {
     color: #ffee00
 }
+a.ref, a.ref:hover {
+    color: #777
+}
 
 header .title {
     display: inline-block;
@@ -29,8 +66,8 @@ header .title {
     text-shadow: 1px 1px #b2b2b2;
     line-height: 1em;
     margin-bottom: 0.5em;
-    font-size: 2em;
-    font-family: "PT Mono", monospace;
+    font-size: 1.8em;
+    font-family: "Source Code Pro", monospace;
     font-weight: 600
 }
 header a#back {
@@ -39,6 +76,7 @@ header a#back {
     margin: 0;
     top: 1rem;
     left: 1rem;
+    font-family: "Source Code Pro", monospace;
     font-size: 3em;
     color: #7c68a1
 }
@@ -61,24 +99,42 @@ header .date {
 }
 #content h1 {
     color: #7c68a1;
-    font-size: 1.6em
+    font-size: 1.4em
 }
 #content h2 {
-    color: #2d9574;
-    font-size: 1.4em;
+    color: #4f97d7;
+    font-size: 1.2em;
     margin-left: 0.6em
 }
 #content h3 {
-    color: #4f97d7;
-    font-size: 1.2em
+    color: #2d9574;
+    font-size: 1em
 }
 
 #content ul, #content ol, #content h1 + p, #content h2 + p, #content h3 + p {
     margin-top: 0
 }
-#content ul, #content ol, #content p {
+#content ul, #content ol, #content p, #content div.sourceCode {
     margin-left: 1.5em;
     margin-right: 1.5em
+}
+#content .math {
+    font-size: 18px
+}
+
+/*Source code*/
+pre.sourceCode {
+    margin-left: 1em
+}
+div.sourceCode {
+    font-size: 18px;
+    background: #222;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 10px;
+}
+code span.ot {
+    color: #a81d72
 }
 
 @media screen and (max-width: 960px) {
@@ -86,7 +142,7 @@ header .date {
     header .title {margin-top: 2em}
     #content h2 {margin-left: 0}
     #content ul, #content ol, #content p {
-	margin-left: 0.5em;
-	margin-right: 0.5em
+	    margin-left: 0.5em;
+	    margin-right: 0.5em
     }
 }

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="dcterms.date" content="2020-11-18">
+  <title>Encoding CwFs in Homotopy Type Theory</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<a id="back" href="index.html">&laquo;</a>
+<h1 class="title">Encoding CwFs in Homotopy Type Theory</h1>
+<p class="date">18 Nov 2020</p>
+</header>
+<section id="content">
+<p>Consider the problem of defining models of dependent type theory inside dependent type theory. To be concrete, suppose we want an internal definition of a <em>category with families</em> (CwF). This and similar problems have been considered before in various settings, and in this note we’ll think about encoding CwFs in the setting of book HoTT. Agda code accompanies, using the HoTT-Agda library (on a <a href="https://github.com/awswan/HoTT-Agda/tree/agda-2.6.1-compatible">2.6.1-compatible fork</a>).</p>
+<h1 id="wildcats-and-their-families">Wildcats and their families</h1>
+<p>A category with families may be defined succinctly as a category <span class="math inline">\mathscr{C}</span> of “contexts” and “substitutions” with a terminal object ◆, together with a presheaf <span class="math inline">(\mathrm{Ty}, \mathrm{Tm}) \colon \mathscr{C}^{op} → \mathrm{Fam}</span> valued over the category of families of sets, along with a comprehension for each <span class="math inline">\sigma \in \mathrm{Ty}\,\Gamma</span> for arbitrary <span class="math inline">\Gamma \in \mathscr{C}</span> (I might write a short note explaining what all these terms mean in the future).</p>
+<p>By expanding the above out in full as a generalized algebraic theory we can define a CwF type-theoretically as a Σ-type consisting of the usual structures and equations. As is usually the case for categorical constructions in HoTT, to make things well behaved we have two options: either set-truncate as needed, or “insert all required coherences”, of which there may be infinitely many. If we were to go the first route and require the contexts and substitutions to be h-sets, the underlying category of contexts would be strict in the HoTT book sense. Going the second route would eventually result in some kind of “∞-CwF”, whatever this might turn out to mean. But for now it’s possible to just ignore the issue and formulate the basic CwF structures on top of so-called <em>wild</em> categories without truncation or coherences. I’ll call such structures <em>wild CwF</em>s.</p>
+<p>Functoriality of <span class="math inline">\mathrm{Ty}</span> and <span class="math inline">\mathrm{Tm}</span> means that the equations <a id="eqs1" class="ref">[Eqs. 1]</a> <span class="math display"> \sigma [id_{\Gamma}] = \sigma \qquad \sigma [g \circ f] = \sigma [g] [f] </span> <span class="math display"> t [id_{\Gamma}] = t \qquad t [g \circ f] = t [g] [f] </span> hold for types <span class="math inline">\sigma</span> and terms <span class="math inline">t</span>, where <span class="math inline">· [f]</span> denotes substitution along the morphism <span class="math inline">f</span>. The important thing to note is that the equations for terms only typecheck up to the equations for types. This means that in book HoTT we need to formulate the latter two equations as <em>dependent</em> paths over the former two, and insert the required transports into terms as needed.</p>
+<p>With this in mind, and assuming we already have the notion of a category of contexts and substitutions</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>Con <span class="ot">:</span> Type i</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>Sub <span class="ot">:</span> Con <span class="ot">→</span> Con <span class="ot">→</span> Type i</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>id  <span class="ot">:</span> <span class="ot">{</span>Γ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">→</span> Sub Γ Γ</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>◦   <span class="ot">:</span> <span class="ot">{</span>Γ Δ Ε <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">→</span> Sub Δ Ε <span class="ot">→</span> Sub Γ Δ <span class="ot">→</span> Sub Γ Ε</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>◆   <span class="ot">:</span> Con</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>◆-t <span class="ot">:</span> is-terminal ◆</span></code></pre></div>
+<p>with the usual laws, we can define the type and term structure of a CwF as a record with, among other things, the following fields for types, terms, and substitutions thereupon,</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>Ty    <span class="ot">:</span> Con <span class="ot">→</span> Type i</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>Tm    <span class="ot">:</span> <span class="ot">{</span>Γ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">→</span> Ty Γ <span class="ot">→</span> Type i</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ot">_</span>[<span class="ot">_</span>]  <span class="ot">:</span> <span class="ot">{</span>Γ Δ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">→</span> Ty Δ <span class="ot">→</span> Sub Γ Δ <span class="ot">→</span> Ty Γ</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ot">_</span>[<span class="ot">_</span>]ₜ <span class="ot">:</span> <span class="ot">{</span>Γ Δ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Δ<span class="ot">}</span> <span class="ot">→</span> Tm σ <span class="ot">→</span> <span class="ot">(</span>f <span class="ot">:</span> Sub Γ Δ<span class="ot">)</span> <span class="ot">→</span> Tm <span class="ot">(</span>σ [ f ]<span class="ot">)</span></span></code></pre></div>
+<p>equations for substitution as in <a href="#eqs1">[Eqs. 1]</a>,</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>[]-id <span class="ot">:</span> <span class="ot">{</span>Γ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Γ<span class="ot">}</span> <span class="ot">→</span> σ [ id ] == σ</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>[]-◦  <span class="ot">:</span> <span class="ot">{</span>Γ Δ Ε <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>f <span class="ot">:</span> Sub Γ Δ<span class="ot">}</span> <span class="ot">{</span>g <span class="ot">:</span> Sub Δ Ε<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Ε<span class="ot">}</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>      <span class="ot">→</span> σ [ g ◦ f ] == σ [ g ] [ f ]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>      </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>[]ₜ-id <span class="ot">:</span> <span class="ot">{</span>Γ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Γ<span class="ot">}</span> <span class="ot">{</span>t <span class="ot">:</span> Tm σ<span class="ot">}</span> <span class="ot">→</span> tr Tm []-id <span class="ot">(</span>t [ id ]ₜ<span class="ot">)</span> == t</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>[]ₜ-◦  <span class="ot">:</span> <span class="ot">{</span>Γ Δ Ε <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>f <span class="ot">:</span> Sub Γ Δ<span class="ot">}</span> <span class="ot">{</span>g <span class="ot">:</span> Sub Δ Ε<span class="ot">}</span> <span class="ot">{</span>σ<span class="ot">}</span> <span class="ot">{</span>t <span class="ot">:</span> Tm σ<span class="ot">}</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>       <span class="ot">→</span> tr Tm []-◦ <span class="ot">(</span>t [ g ◦ f ]ₜ<span class="ot">)</span> == t [ g ]ₜ [ f ]ₜ</span></code></pre></div>
+<p>and context extension and projections.</p>
+<p>(To be continued…)</p>
+<h1 id="related-work">Related work</h1>
+<p>Previous work on internal formulations of models of type theory includes</p>
+<ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S157106610800577X"><em>Type Theory should eat itself</em> [Ch08]</a></li>
+<li><a href="https://arxiv.org/abs/1907.0756"><em>Shallow embedding of type theory is morally correct</em> [KKK18]</a></li>
+<li><a href="https://arxiv.org/abs/2009.01883"><em>Internal ∞-Categorical Models of Dependent Type Theory: Towards 2LTT Eating HoTT</em> [Kr20]</a></li>
+</ul>
+<p>and the paper which introduces CwFs:</p>
+<ul>
+<li><a href="http://www.cse.chalmers.se/~peterd/papers/InternalTT.pdf"><em>Internal Type Theory</em> [Dy96]</a></li>
+</ul>
+<p>The exact settings of these papers vary, in particular with respect to the equality of the theory along two axes: extensional–intensional and homogeneous–heterogeneous. As far as I can see, [Ch08] is intensional but heterogeneous, [KKK18] extensional, [Kr20] intensional homogeneous.</p>
+<hr />
+<p>This is a note on work in progress. The concepts mentioned here are formalized in Agda and available <a href="https://github.com/jaycech3n/CwF">on GitHub</a>.</p>
+</section>
+</body>
+</html>
