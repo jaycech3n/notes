@@ -122,6 +122,13 @@ header .date {
     font-size: 18px
 }
 
+/*Quotes*/
+blockquote {
+    border-left: 4px #7c68a1 solid;
+    margin-left: 1em;
+    padding-left: 8px
+}
+
 /*Source code*/
 pre.sourceCode {
     margin-left: 1em

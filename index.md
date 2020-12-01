@@ -10,4 +10,5 @@ css:
 
 # Notes sobre ∞-categories
 
-- [Encoding CwFs in Homotopy Type Theory](16-10-20.html) ∙ 2 nov 20
+- [Subsimplices as functors](30-11-20.html) ∙ 30 nov 20
+- [Encoding CwFs in homotopy type theory](16-10-20.html) ∙ 2 nov 20

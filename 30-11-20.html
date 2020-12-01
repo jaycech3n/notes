@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Subsimplices as functors</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<a id="back" href="index.html">&laquo;</a>
+<h1 class="title">Subsimplices as functors</h1>
+<p class="date">1 Dec 2020</p>
+</header>
+<section id="content">
+<p>Given a <a href="https://ncatlab.org/homotopytypetheory/show/semi-simplicial+types"><span class="math inline">n</span>-semisimplicial type</a> <span class="math inline">(A_0, \dotsc, A_n)</span>, we may form the Σ-type <span class="math display">\mathrm{simplices}(n) \coloneqq \Sigma(x^0_0, \dotsc, x^0_n \colon A_0) (x^1_0 \colon A_1\,x^0_0\,x^0_1) \dotsb.\ A_n (\dots),</span> of <span class="math inline">n</span>-simplices with <span class="math inline">k</span>-faces labelled by the <span class="math inline">A_k</span>.</p>
+<blockquote>
+<p>Example: <span class="math display">\mathrm{simplices}(2) =
+\Sigma(x, y, z \colon A_0) (f \colon A_1\,x\,y) (g \colon A_1\,x\,z) (h \colon A_1\,y\,z).
+\ A_2\,x\,y\,z\,f\,g\,h</span> is the type of triangles with vertices, edges and face dependently labelled by elements of <span class="math inline">A_0, A_1, A_2.</span></p>
+</blockquote>
+<p>The appropriate projections then form maps <span class="math inline">\mathrm{simplices}(n) \rightarrow \mathrm{simplices}(m)</span> for <span class="math inline">m \leq n</span> (i.e. into lower-dimensional simplices) selecting the faces of <span class="math inline">\mathrm{simplices}(n)</span>.</p>
+<blockquote>
+<p>Example: <span class="math display">(\pi_x, \pi_y, \pi_f),\ (\pi_x, \pi_z, \pi_g),\ (\pi_y, \pi_z, \pi_h) \colon \mathrm{simplices}(2) \rightarrow \mathrm{simplices}(1)</span> pick the edges of a triangle, while <span class="math inline">\pi_z \colon \mathrm{simplices}(2) \rightarrow \mathrm{simplices}(0)</span> picks the third vertex.</p>
+</blockquote>
+<p>Recall that we define the “semisimplex” category <span class="math inline">\mathbb{\Delta}_+</span> as the subcategory of the (skeletal) simplex category without degeneracy maps. For any dimension <span class="math inline">n</span>, <span class="math inline">\mathrm{simplices}</span> is a presheaf over <span class="math inline">\mathbb{\Delta}_+</span>, where <span class="math inline">\mathrm{simplices}(f)</span> for arrows <span class="math inline">f</span> are the projections mentioned in the previous paragraph. This is just saying that <span class="math inline">\mathrm{simplices}</span> is indeed a semisimplical object in the category of types.</p>
+<p>An element <span class="math inline">T \colon \mathrm{simplices}(n)</span> then gives rise to a natural transformation <span class="math inline">T^n \colon よ[n] \Rightarrow \mathrm{simplices}</span>, where <span class="math inline">よ[n]</span> is the representable functor and the components <span class="math inline">T^n_m</span> send a sequence <span class="math inline">s \in \mathrm{hom}([m], [n])</span> to the tuple encoding the face of <span class="math inline">T</span> corresponding to <span class="math inline">s</span>.</p>
+<blockquote>
+<p>Example: Let <span class="math inline">T \coloneqq (a,b,c,f,g,h,F) \colon \mathrm{simplices}(2)</span>. Then naturality of <span class="math inline">T^n</span> says, for instance, that the following diagram <a href="https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhybXtob219KFsxXSxbMl0pIl0sWzIsMCwiXFxtYXRocm17c2hhcGV9KDEpID0gXFxTaWdtYSh4LHlcXGNvbG9uIEFfbykuXFwgQV8xXFwseFxcLHkiXSxbMiwxLCJcXG1hdGhybXtzaGFwZX0oMCkgPSBBXzAiXSxbMCwxLCJcXG1hdGhybXtob219KFswXSxbMl0pIl0sWzAsMSwiVF4yXzEiXSxbMSwyLCJcXHBpXzIiXSxbMCwzLCJcXGNkb3RcXCxcXGNpcmMgMSIsMl0sWzMsMiwiVF4yXzAiLDJdXQ==">(prettier)</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>                  T²₁</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    hom<span class="ot">(</span>[1], [2]<span class="ot">)</span> ───&gt; shape<span class="ot">(</span><span class="dv">1</span><span class="ot">)</span> <span class="ot">=</span> Σ<span class="ot">(</span>x, y: A₀<span class="ot">).</span> A₁ x y</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>          <span class="ot">|</span>               <span class="ot">|</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    · ∘ <span class="dv">1</span> <span class="ot">|</span>               <span class="ot">|</span> π₂</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>          v               v</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    hom<span class="ot">(</span>[0], [2]<span class="ot">)</span> ───&gt; shape<span class="ot">(</span><span class="dv">0</span><span class="ot">)</span> <span class="ot">=</span> A₀</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>                  T²₀</span></code></pre></div>
+<p>commutes, sending</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dv">01</span> |──&gt; <span class="ot">(</span>a, b, f<span class="ot">)</span>    <span class="dv">02</span> |──&gt; <span class="ot">(</span>a, c, g<span class="ot">)</span>    <span class="dv">12</span> |──&gt; <span class="ot">(</span>b, c, h<span class="ot">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a> ─          ─         ─          ─         ─          ─</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a> <span class="ot">|</span>          <span class="ot">|</span>         <span class="ot">|</span>          <span class="ot">|</span>         <span class="ot">|</span>          <span class="ot">|</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a> v          v         v          v         v          v</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a> <span class="dv">1</span> |──────&gt; b         <span class="dv">2</span> |──────&gt; c         <span class="dv">2</span> |──────&gt; c</span></code></pre></div>
+</blockquote>
+</section>
+</body>
+</html>
