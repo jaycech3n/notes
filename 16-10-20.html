@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="dcterms.date" content="2020-11-18">
+  <meta name="dcterms.date" content="2020-10-16">
   <title>Encoding CwFs in homotopy type theory</title>
   <style>
     code{white-space: pre-wrap;}
@@ -100,7 +100,7 @@
 <header id="title-block-header">
 <a id="back" href="index.html">&laquo;</a>
 <h1 class="title">Encoding CwFs in homotopy type theory</h1>
-<p class="date">18 Nov 2020</p>
+<p class="date">16 Oct 2020</p>
 </header>
 <section id="content">
 <p>Consider the problem of defining models of dependent type theory inside dependent type theory. To be concrete, suppose we want an internal definition of a <em>category with families</em> (CwF). This and similar problems have been considered before in various settings, and in this note we’ll think about encoding CwFs in the setting of book HoTT. Agda code accompanies, using the HoTT-Agda library (on a <a href="https://github.com/awswan/HoTT-Agda/tree/agda-2.6.1-compatible">2.6.1-compatible fork</a>).</p>
@@ -125,12 +125,12 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>[]-id <span class="ot">:</span> <span class="ot">{</span>Γ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Γ<span class="ot">}</span> <span class="ot">→</span> σ [ id ] == σ</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>[]-◦  <span class="ot">:</span> <span class="ot">{</span>Γ Δ Ε <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>f <span class="ot">:</span> Sub Γ Δ<span class="ot">}</span> <span class="ot">{</span>g <span class="ot">:</span> Sub Δ Ε<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Ε<span class="ot">}</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>      <span class="ot">→</span> σ [ g ◦ f ] == σ [ g ] [ f ]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>      </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>[]ₜ-id <span class="ot">:</span> <span class="ot">{</span>Γ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Γ<span class="ot">}</span> <span class="ot">{</span>t <span class="ot">:</span> Tm σ<span class="ot">}</span> <span class="ot">→</span> tr Tm []-id <span class="ot">(</span>t [ id ]ₜ<span class="ot">)</span> == t</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>[]ₜ-◦  <span class="ot">:</span> <span class="ot">{</span>Γ Δ Ε <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>f <span class="ot">:</span> Sub Γ Δ<span class="ot">}</span> <span class="ot">{</span>g <span class="ot">:</span> Sub Δ Ε<span class="ot">}</span> <span class="ot">{</span>σ<span class="ot">}</span> <span class="ot">{</span>t <span class="ot">:</span> Tm σ<span class="ot">}</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>       <span class="ot">→</span> tr Tm []-◦ <span class="ot">(</span>t [ g ◦ f ]ₜ<span class="ot">)</span> == t [ g ]ₜ [ f ]ₜ</span></code></pre></div>
 <p>and context extension and projections.</p>
-<p>(To be continued…)</p>
+<p>(To be continued.)</p>
 <h1 id="related-work">Related work</h1>
 <p>Previous work on internal formulations of models of type theory includes</p>
 <ul>
@@ -144,7 +144,7 @@
 </ul>
 <p>The exact settings of these papers vary, in particular with respect to the equality of the theory along two axes: extensional–intensional and homogeneous–heterogeneous. As far as I can see, [Ch08] is intensional but heterogeneous, [KKK18] extensional, [Kr20] intensional homogeneous.</p>
 <hr />
-<p>This is a note on work in progress. The concepts mentioned here are formalized in Agda and available <a href="https://github.com/jaycech3n/CwF">on GitHub</a>.</p>
+<p>Updated 18 Nov 2020. This is a note on work in progress. The concepts mentioned here are formalized in Agda and available <a href="https://github.com/jaycech3n/CwF">on GitHub</a>.</p>
 </section>
 </body>
 </html>

@@ -125,7 +125,7 @@ header .date {
 /*Quotes*/
 blockquote {
     border-left: 4px #7c68a1 solid;
-    margin-left: 1em;
+    margin-left: 2em;
     padding-left: 8px
 }
 
@@ -152,4 +152,5 @@ code span.ot {
 	    margin-left: 0.5em;
 	    margin-right: 0.5em
     }
+    blockquote {margin-left: 1em}
 }
