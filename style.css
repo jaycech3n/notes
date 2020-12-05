@@ -131,7 +131,8 @@ blockquote {
 
 /*Source code*/
 pre.sourceCode {
-    margin-left: 1em
+    margin-left: 1em;
+    font-family: monospace
 }
 div.sourceCode {
     font-size: 18px;
