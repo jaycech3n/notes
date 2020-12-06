@@ -118,18 +118,18 @@
 <blockquote>
 <p>Example: Let <span class="math inline">T \coloneqq (a,b,c,f,g,h,F) \colon \mathrm{simplices}(2)</span>. Then naturality of <span class="math inline">T^n</span> says, for instance, that the following diagram <a href="https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhybXtob219KFsxXSxbMl0pIl0sWzIsMCwiXFxtYXRocm17c2hhcGV9KDEpID0gXFxTaWdtYSh4LHlcXGNvbG9uIEFfbykuXFwgQV8xXFwseFxcLHkiXSxbMiwxLCJcXG1hdGhybXtzaGFwZX0oMCkgPSBBXzAiXSxbMCwxLCJcXG1hdGhybXtob219KFswXSxbMl0pIl0sWzAsMSwiVF4yXzEiXSxbMSwyLCJcXHBpXzIiXSxbMCwzLCJcXGNkb3RcXCxcXGNpcmMgMSIsMl0sWzMsMiwiVF4yXzAiLDJdXQ==">(prettier)</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>                  T²₁</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    hom<span class="ot">(</span>[1], [2]<span class="ot">)</span> <span class="co">---&gt; shape(1) = Σ(x, y: A₀). A₁ x y</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    hom<span class="ot">(</span>[1], [2]<span class="ot">)</span> ───&gt; shape<span class="ot">(</span><span class="dv">1</span><span class="ot">)</span> <span class="ot">=</span> Σ<span class="ot">(</span>x, y: A₀<span class="ot">).</span> A₁ x y</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>          <span class="ot">|</span>               <span class="ot">|</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    - ∘ <span class="dv">1</span> <span class="ot">|</span>               <span class="ot">|</span> π₂</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>          v               v</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    hom<span class="ot">(</span>[0], [2]<span class="ot">)</span> <span class="co">---&gt; shape(0) = A₀</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    hom<span class="ot">(</span>[0], [2]<span class="ot">)</span> ───&gt; shape<span class="ot">(</span><span class="dv">0</span><span class="ot">)</span> <span class="ot">=</span> A₀</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>                  T²₀</span></code></pre></div>
 <p>commutes, sending</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dv">01</span> |--&gt; <span class="ot">(</span>a, b, f<span class="ot">)</span>    <span class="dv">02</span> |--&gt; <span class="ot">(</span>a, c, g<span class="ot">)</span>    <span class="dv">12</span> |--&gt; <span class="ot">(</span>b, c, h<span class="ot">)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a> ─          ─         ─          ─         ─          ─</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a> <span class="ot">|</span>          <span class="ot">|</span>         <span class="ot">|</span>          <span class="ot">|</span>         <span class="ot">|</span>          <span class="ot">|</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a> v          v         v          v         v          v</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a> <span class="dv">1</span> |------&gt; b         <span class="dv">2</span> |------&gt; c         <span class="dv">2</span> |------&gt; c</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dv">01</span> |─&gt; <span class="ot">(</span>a, b, f<span class="ot">)</span>    <span class="dv">02</span> |─&gt; <span class="ot">(</span>a, c, g<span class="ot">)</span>    <span class="dv">12</span> |─&gt; <span class="ot">(</span>b, c, h<span class="ot">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a> ─         ─         ─         ─         ─         ─</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a> <span class="ot">|</span>         <span class="ot">|</span>         <span class="ot">|</span>         <span class="ot">|</span>         <span class="ot">|</span>         <span class="ot">|</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a> v         v         v         v         v         v</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a> <span class="dv">1</span> |─────&gt; b         <span class="dv">2</span> |─────&gt; c         <span class="dv">2</span> |─────&gt; c</span></code></pre></div>
 </blockquote>
 <p>(To be continued.)</p>
 <hr />
