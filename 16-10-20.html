@@ -129,8 +129,16 @@
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>[]ₜ-id <span class="ot">:</span> <span class="ot">{</span>Γ <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Γ<span class="ot">}</span> <span class="ot">{</span>t <span class="ot">:</span> Tm σ<span class="ot">}</span> <span class="ot">→</span> tr Tm []-id <span class="ot">(</span>t [ id ]ₜ<span class="ot">)</span> == t</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>[]ₜ-◦  <span class="ot">:</span> <span class="ot">{</span>Γ Δ Ε <span class="ot">:</span> Con<span class="ot">}</span> <span class="ot">{</span>f <span class="ot">:</span> Sub Γ Δ<span class="ot">}</span> <span class="ot">{</span>g <span class="ot">:</span> Sub Δ Ε<span class="ot">}</span> <span class="ot">{</span>σ<span class="ot">}</span> <span class="ot">{</span>t <span class="ot">:</span> Tm σ<span class="ot">}</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>       <span class="ot">→</span> tr Tm []-◦ <span class="ot">(</span>t [ g ◦ f ]ₜ<span class="ot">)</span> == t [ g ]ₜ [ f ]ₜ</span></code></pre></div>
-<p>and context extension and projections.</p>
-<p>(To be continued.)</p>
+<p>and context extension and projections</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode agda"><code class="sourceCode agda"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="ot">_</span>∷<span class="ot">_</span>  <span class="ot">:</span> <span class="ot">(</span>Γ <span class="ot">:</span> Con<span class="ot">)</span> <span class="ot">(</span>σ <span class="ot">:</span> Ty Γ<span class="ot">)</span> <span class="ot">→</span> Con</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>p    <span class="ot">:</span> <span class="ot">∀</span> <span class="ot">{</span>Γ<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Γ<span class="ot">}</span> <span class="ot">→</span> Sub <span class="ot">(</span>Γ ∷ σ<span class="ot">)</span> Γ</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>ν    <span class="ot">:</span> <span class="ot">∀</span> <span class="ot">{</span>Γ<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Γ<span class="ot">}</span> <span class="ot">→</span> Tm <span class="ot">(</span>σ [ p ]<span class="ot">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="ot">_</span>,,<span class="ot">_</span> <span class="ot">:</span> <span class="ot">∀</span> <span class="ot">{</span>Γ Δ<span class="ot">}</span> <span class="ot">{</span>σ <span class="ot">:</span> Ty Γ<span class="ot">}</span> <span class="ot">(</span>f <span class="ot">:</span> Sub Δ Γ<span class="ot">)</span> <span class="ot">(</span>t <span class="ot">:</span> Tm <span class="ot">(</span>σ [ f ]<span class="ot">))</span> <span class="ot">→</span> Sub Δ <span class="ot">(</span>Γ ∷ σ<span class="ot">)</span></span></code></pre></div>
+<p>together with beta and eta rules expressing the universal property they satisfy.</p>
+<p>We can then define the usual operations on dependent terms like substitution of variables by terms etc.</p>
+<h1 id="additional-structure">Additional structure</h1>
+<p>The bare notion of a CwF can be extended with constructions interpreting Π and Σ types. Alongside the type formers, constructors and eliminators, we also need equations saying how substitution behaves. For instance, the rule <span class="math display"> \Pi(A, B)[t/x] = \Pi(A[t/x], B[t/x]) </span> for <span class="math inline">\Gamma; x \vdash A</span> and <span class="math inline">\Gamma; x; y \colon A \vdash B</span> is an instance of the general rule on substitutions <span class="math display"> \Pi(A, B)[f] = \Pi(A[f], B[\hat{f}]), </span> where <span class="math inline">\hat{f}</span> is the weakening of the substitution <span class="math inline">f</span> by <span class="math inline">y \colon A</span>. The substitution rule for lambdas is similar.</p>
+<p>Formulating the Σ-type former, constructor (pair) and eliminators (first and second projections) is straightforward enough. However when we try to write down the equation for substitution in pairs we have to transport along an equality expressing the condition that weakening and explicit term substitution commute. This turns out to be essentially the universal property of comprehensions, which is provable from the beta and eta rules mentioned earlier but quite involved in our setting due to all the transports involved.</p>
 <h1 id="related-work">Related work</h1>
 <p>Previous work on internal formulations of models of type theory includes</p>
 <ul>
@@ -144,7 +152,7 @@
 </ul>
 <p>The exact settings of these papers vary, in particular with respect to the equality of the theory along two axes: extensional–intensional and homogeneous–heterogeneous. As far as I can see, [Ch08] is intensional but heterogeneous, [KKK18] extensional, [Kr20] intensional homogeneous.</p>
 <hr />
-<p>Updated 18 Nov 2020. This is a note on work in progress. The concepts mentioned here are formalized in Agda and available <a href="https://github.com/jaycech3n/CwF">on GitHub</a>.</p>
+<p>Updated 23 Dec 2020. This is a note on work in progress. The concepts mentioned here and more are formalized in Agda and available <a href="https://github.com/jaycech3n/CwF">on GitHub</a>.</p>
 </section>
 </body>
 </html>

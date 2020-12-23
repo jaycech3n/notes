@@ -30,6 +30,34 @@
        url(assets/fonts/Atkinson-Hyperlegible-BoldItalic.woff2) format('woff2'),
        url(assets/fonts/Atkinson-Hyperlegible-BoldItalic.woff) format('woff')
 }
+@font-face {
+  font-family: "DejaVu Sans Mono";
+  font-style: normal;
+  font-weight: normal;
+  src: local('DejaVu Sans Mono'), local('DejaVuSansMono'),
+       url(assets/fonts/DejaVuSansMono.woff) format("woff");
+}
+@font-face {
+  font-family: "DejaVu Sans Mono";
+  font-style: normal;
+  font-weight: bold;
+  src: local('DejaVu Sans Mono Bold'), local('DejaVuSansMono-Bold'),
+       url(assets/fonts/DejaVuSansMono-Bold.woff) format("woff");
+}
+@font-face {
+  font-family: "DejaVu Sans Mono";
+  font-style: oblique;
+  font-weight: bold;
+  src: local('DejaVu Sans Mono Bold Oblique'), local('DejaVuSansMono-BoldOblique'),
+       url(assets/fonts/DejaVuSansMono-BoldOblique.woff) format("woff");
+}
+@font-face {
+  font-family: "DejaVu Sans Mono";
+  font-style: oblique;
+  font-weight: normal;
+  src: local('DejaVu Sans Mono Oblique'), local('DejaVuSansMono-Oblique'),
+       url(assets/fonts/DejaVuSansMono-Oblique.woff) format("woff");
+}
 
 body {
     margin: 0 25% 0 25%;
@@ -68,7 +96,7 @@ header .title {
     margin-bottom: 0.5em;
     font-size: 1.8em;
     font-family: "Source Code Pro", monospace;
-    font-weight: 600
+    font-weight: 400
 }
 header a#back {
     display: inline-block;
@@ -95,7 +123,7 @@ header .date {
 
 #content h1, #content h2 {
     font-family: "Source Code Pro", monospace;
-    font-weight: 600
+    font-weight: 400
 }
 #content h1 {
     color: #7c68a1;
@@ -132,7 +160,7 @@ blockquote {
 /*Source code*/
 pre.sourceCode {
     margin-left: 1em;
-    font-family: monospace
+    font-family: "DejaVu Sans Mono", monospace
 }
 div.sourceCode {
     font-size: 18px;
